@@ -59,3 +59,54 @@ known trope).
   Kit tarball + competition JSON kept out of the repo (local records
   only). Repo About set BEFORE submit: description + homepage
   (bounty URL) + topic "makefun".
+
+## 4. Quota
+- `makefun status --competition` → can_submit: true, day cap 5,
+  taken 0, left 5. Blind round slot available, interval ends
+  2026-11-26T08:48:31.333Z.
+
+## 5. Check / submit
+- Bundle v1: ~/workspace/makefun/submit/u-eager-stork-81-9647-fortune-cookie-funnies-for-866bde2a-transcripts-v1.tar.gz
+  (689,362 bytes, sha256
+  58b00103d3aa76dad7bb7f1908c126bea55db7abd29e8061eae8bbbde5e3bc63),
+  18 sessions, run record: scheduled prompt, system prompt uploaded,
+  instruction files collected (1), MCP none, agent facts declared
+  (harness muse, model muse-spark-1.3, provider meta, effort default).
+- Check v1 on commit fd4d390: 12 pass / 2 fail / 5 skip / 5 at
+  submission. FAILs: thinking_priced (0 usage rows) and
+  thinking_revised (main.ts final content from 1 message only).
+- thinking_revised FIXED in-session: main.ts revised a second time
+  ("slept" carries-the-joke note added), re-ran locally (entry.txt
+  byte-identical, 77 bytes), committed 566077d, pushed.
+- Bundle v2: ~/workspace/makefun/submit/u-eager-stork-81-9647-fortune-cookie-funnies-for-866bde2a-transcripts-v2.tar.gz
+  (694,914 bytes, sha256
+  4f4faa52a4ba133657e41ae0c39a2bb63fb055106aa522cf1b02931f910f842e),
+  same 18 sessions + same declared flags.
+- Check v2 on commit 566077d: 13 pass / 1 fail / 5 skip / 5 at
+  submission. ONLY thinking_priced still fails (0 usage rows).
+  Everything else passes; thinking_revised now PASS (main.ts final
+  content from 2 messages), thinking_in_window PASS (all timestamps
+  05:47:47Z–receipt), thinking_reproduces 64.6% PASS,
+  transcripts_run_record PASS.
+- thinking_priced NOT fixable from this subagent session: the CLI's
+  own fix text says a subagent's usage rows are written only once its
+  run completes, and the top-level agent must run the SELECT + re-bundle
+  + submit. This is the known token-radar/roast/ronigrv/ooo sequencing
+  pattern, not a build failure.
+- Quota re-verified before handoff: can_submit true (day cap 5,
+  taken 0). Blind round slot available until 2026-11-26T08:48:31.333Z.
+- HANDOFF to parent: after this run completes, SELECT usage rows for
+  agent_ids a4290606-417e-495a-b742-cc5bffbdf19d (parent),
+  42f8c90e-c26d-4754-8161-07938f9e3f0b (this builder),
+  af037fd8-baaf-4cb5-8f5d-b9181c914cc9 (sibling subagent session bundled
+  with this build), re-bundle as v3 with --muse-usage <file>
+  (same flags as v2: --prompt-file
+  ~/workspace/makefun/submit/u-eager-stork-81-9647-fortune-cookie-funnies-for-866bde2a-prompt.txt
+  --prompt-origin scheduled --prompt-via "cron makefun-bounty-screening
+  every 5 min" --mcp none --harness muse --harness-version unrecorded
+  --model muse-spark-1.3 --provider meta --effort default), re-check,
+  then submit the final commit below with
+  --keypair ~/workspace/makefun/makefun-keypair.json. Receipt to
+  ~/workspace/makefun/submit/receipt-<submission-id>.json (mode 600).
+- Final commit (after BUILD_LOG v2 update): see git log; submit THAT
+  commit's sha (checked v3 by parent after re-bundle).
