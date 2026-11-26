@@ -33,7 +33,10 @@
 // smaller text (fewer bytes) places first, and 77 bytes is near the
 // floor for a line that still lands a full joke. Trimming "at 2 a.m."
 // or "at 9 a.m." would trim the joke itself — the two clocks are the
-// setup, "slept" is the punchline.
+// setup, "slept" is the punchline. Note the asymmetry that makes the
+// joke work: the reviewer slept, so the review will be sharp; the
+// author did not, so the code will not survive it. One word, "slept",
+// carries both halves of that contrast, which is why it sits last.
 //
 // Run locally:  mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
